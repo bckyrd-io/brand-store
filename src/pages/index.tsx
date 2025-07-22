@@ -4,6 +4,8 @@ import { Space_Grotesk } from "next/font/google";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Link from 'next/link';
+import { useCart } from '../context/CartContext';
+
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -12,6 +14,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { addToCart } = useCart();
 
   const slides = [
     {
@@ -142,7 +145,7 @@ export default function Home() {
         <section className="pt-8 pb-24">
           <div className="container mx-auto px-4">
             <div className="w-full space-y-6">
-              <div className="relative w-full h-[60vh] md:h-[70vh] rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative w-full h-[60vh] md:h-[70vh] rounded overflow-hidden shadow-2xl">
                 <Image
                   src={slides[currentSlide].image}
                   alt={slides[currentSlide].title}
@@ -208,6 +211,12 @@ export default function Home() {
                     <div className="flex justify-between items-center">
                       <span className="text-xl font-bold text-primary">${product.price}</span>
                       <button 
+                        onClick={() => addToCart({
+                          id: product.id,
+                          name: product.name,
+                          price: product.price,
+                          image: product.image
+                        })}
                         className="bg-primary text-white px-6 py-2 hover:bg-primary-dark transition-colors duration-300 font-medium"
                         aria-label={`Add ${product.name} to cart`}
                       >
