@@ -169,7 +169,7 @@ export default function Home() {
 
             <div className="max-w-3xl text-left">
              <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              we're committed to nurturing both our land and our community.
+              we&apos;re committed to nurturing both our land and our community.
               </p>
               <div className="flex gap-4 justify-left">
                 <Link href="/products"
@@ -297,7 +297,7 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center mb-16">
               <h2 className="text-3xl font-bold mb-4">Why Choose GroundFarm</h2>
-              <p className="text-gray-600 text-lg">Discover how we're committed to serving you better</p>
+              <p className="text-gray-600 text-lg">Discover how we&apos;re committed to serving you better</p>
             </div>
 
             <div className="max-w-7xl mx-auto space-y-4">

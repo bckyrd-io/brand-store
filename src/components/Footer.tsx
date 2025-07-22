@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-primary text-white py-12">
@@ -16,10 +18,10 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="/products" className="hover:text-white/80 transition-colors">Products</a></li>
-              <li><a href="/activities" className="hover:text-white/80 transition-colors">Activities</a></li>
-              <li><a href="/research" className="hover:text-white/80 transition-colors">Research</a></li>
-              <li><a href="/faq" className="hover:text-white/80 transition-colors">FAQ</a></li>
+              <li><Link href="/products" className="hover:text-white/80 transition-colors">Products</Link></li>
+              <li><Link href="/activities" className="hover:text-white/80 transition-colors">Activities</Link></li>
+              <li><Link href="/research" className="hover:text-white/80 transition-colors">Research</Link></li>
+              <li><Link href="/faq" className="hover:text-white/80 transition-colors">FAQ</Link></li>
             </ul>
           </div>
           <div>
