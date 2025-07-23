@@ -18,19 +18,14 @@ export default function Home() {
 
   const slides = [
     {
-      image: '/images.jpg',
-      title: 'Welcome to Our Farm',
-      description: 'A working farm that combines sustainable agriculture with family-friendly experiences. Visit our farm shop in town or join us for farm activities.'
-    },
-    {
-      image: '/images.jpg',
-      title: 'Farm Adventures',
-      description: 'Create lasting memories with camping, playground fun, and guided farm tours. Perfect for families and nature enthusiasts.'
-    },
-    {
-      image: '/images.jpg',
+      image: '/farm_shop.jpg',
       title: 'Farm to Town',
       description: 'Shop fresh produce at our town depot or stay at our comfortable lodge. Experience farm connection while enjoying urban conveniences.'
+    },
+    {
+      image: '/farm_playground.jpg',
+      title: 'Farm Adventures',
+      description: 'Create lasting memories with camping, playground fun, and guided farm tours. Perfect for families and nature enthusiasts.'
     }
   ];
 
@@ -38,103 +33,35 @@ export default function Home() {
     {
       id: '1',
       name: 'Fresh Organic Vegetables',
-      price: 24.99,
-      image: '/images.jpg',
+      price: 300.99,
+      image: '/vegetables.jpg',
       category: 'Vegetables',
       description: 'A selection of freshly picked organic vegetables from our farm.'
     },
     {
       id: '2',
       name: 'Farm Fresh Eggs',
-      price: 5.99,
-      image: '/images.jpg',
+      price: 4000.99,
+      image: '/eggs.jpg',
       category: 'Dairy',
       description: 'Eggs collected daily from free-range hens for maximum freshness.'
     },
     {
       id: '3',
       name: 'Organic Honey',
-      price: 12.99,
-      image: '/images.jpg',
+      price: 4900.99,
+      image: '/honey.jpg',
       category: 'Natural',
       description: 'Pure, raw honey harvested from our organic beehives.'
     },
     {
       id: '4',
       name: 'Fresh Fruits Basket',
-      price: 34.99,
-      image: '/images.jpg',
+      price: 200.99,
+      image: '/bananas.jpg',
       category: 'Fruits',
       description: 'A basket filled with a variety of seasonal, organic fruits.'
     }
-  ];
-
-  const activities = [
-    {
-      title: 'Town Lodge Experience',
-      description: 'Stay in our modern, comfortable lodge in town with full amenities. Perfect for those who want to experience farm life while enjoying urban conveniences. Features Airbnb-style accommodations with easy access to both city attractions and farm activities.',
-      image: '/images.jpg',
-    },
-    {
-      title: 'Wild Farm Camping',
-      description: 'Immerse yourself in nature with our unique farm camping experience. Sleep under the stars in the midst of our organic farm, with luxury glamping tents and eco-friendly facilities. Perfect for adventure seekers and nature lovers.',
-      image: '/images.jpg',
-    },
-    {
-      title: 'Family Adventure Playground',
-      description: 'A perfect blend of fun and adventure for all ages. Featuring obstacle courses, trampolines, sand soccer fields, and extensive boardgame collection. Host your family events in our spacious, activity-filled environment.',
-      image: '/images.jpg',
-    },
-  ];
-
-  const posts = [
-    {
-      category: 'Greenhouse',
-      title: 'Advanced Hydroponic Systems',
-      excerpt: 'Exploring new methods of sustainable indoor farming...',
-      image: '/images.jpg',
-    },
-    {
-      category: 'Field Crops',
-      title: 'Organic Pest Management',
-      excerpt: 'Natural solutions for protecting crops...',
-      image: '/images.jpg',
-    },
-    {
-      category: 'Technology',
-      title: 'Smart Farming Solutions',
-      excerpt: 'Implementing IoT devices for better crop monitoring...',
-      image: '/images.jpg',
-    },
-    {
-      category: 'Mechanization',
-      title: 'Automated Harvesting',
-      excerpt: 'Reducing labor costs while improving efficiency...',
-      image: '/images.jpg',
-    },
-  ];
-
-  const faqs = [
-    {
-      question: '🚚 Convenient Home Delivery',
-      answer: 'We bring the freshness right to your doorstep! Enjoy complimentary delivery within 20 miles and flexible delivery options for your convenience.',
-    },
-    {
-      question: '🌱 Farm-Fresh Guarantee',
-      answer: 'Experience the difference of truly fresh produce! Every item is harvested at peak freshness and delivered within 24 hours to ensure the highest quality.',
-    },
-    {
-      question: '🤝 Personal Farm Connection',
-      answer: 'Connect with your food source! Join our farm tours, workshops, and seasonal events to experience sustainable farming firsthand.',
-    },
-    {
-      question: '🌿 100% Organic Promise',
-      answer: 'Rest assured with our certified organic commitment. We maintain strict sustainable practices to deliver clean, healthy produce for your family.',
-    },
-    {
-      question: '� Premium Customer Care',
-      answer: 'Your satisfaction is our priority. Our dedicated team is here to assist you with personalized service and expert product recommendations.',
-    },
   ];
 
   return (
@@ -142,7 +69,7 @@ export default function Home() {
       <Header />
       <main className="pt-16">
         {/* Hero Section */}
-        <section className="pt-8 pb-24">
+        <section className=" pb-24">
           <div className="container mx-auto px-4">
             <div className="w-full max-w-7xl mx-auto space-y-8">
               <div className="relative w-full aspect-[1.59/1] rounded-2xl overflow-hidden">
@@ -160,8 +87,8 @@ export default function Home() {
                     key={index}
                     onClick={() => setCurrentSlide(index)}
                     className={`w-2 h-2 rounded-full transition-all ${currentSlide === index
-                        ? 'bg-primary w-8'
-                        : 'bg-gray-200 hover:bg-gray-300'
+                      ? 'bg-primary w-8'
+                      : 'bg-gray-200 hover:bg-gray-300'
                       }`}
                   />
                 ))}
@@ -181,8 +108,6 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-
-
             </div>
           </div>
         </section>
@@ -236,19 +161,19 @@ export default function Home() {
                 {
                   title: "Farm Adventures",
                   description: "Experience authentic farm life with our guided tours, seasonal fruit picking, and animal feeding sessions. Perfect for families looking to connect with nature and learn about sustainable farming.",
-                  image: '/images.jpg',
+                  image: '/adventure.jpg',
                   link: '/activities#farm'
                 },
                 {
                   title: "Adventure Playground",
                   description: "A perfect outdoor playground featuring obstacle courses, trampolines, and sand soccer fields. Host memorable family events in our spacious, activity-filled environment.",
-                  image: '/images.jpg',
+                  image: '/trampoline.jpg',
                   link: '/activities#playground'
                 },
                 {
                   title: "Town Lodge",
                   description: "Stay in our modern lodge in town with easy access to both urban amenities and farm experiences. Features comfortable rooms, farm shop, and regular shuttle service to the farm.",
-                  image: '/images.jpg',
+                  image: '/lodge.jpg',
                   link: '/accommodation'
                 }
               ].map((activity, index) => (
@@ -290,7 +215,7 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row">
                   <div className="relative w-full md:w-72 h-64 overflow-hidden">
                     <Image
-                      src="/images.jpg"
+                      src="/permaculture.jpg"
                       alt="Permaculture Transition"
                       fill
                       className="object-cover rounded-lg"
@@ -313,7 +238,7 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row">
                   <div className="relative w-full md:w-72 h-64 overflow-hidden">
                     <Image
-                      src="/images.jpg"
+                      src="/research.jpg"
                       alt="Research Collaboration"
                       fill
                       className="object-cover rounded-lg"
@@ -336,7 +261,7 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row">
                   <div className="relative w-full md:w-72 h-64 overflow-hidden">
                     <Image
-                      src="/images.jpg"
+                      src="/education.jpg"
                       alt="Educational Programs"
                       fill
                       className="object-cover rounded-lg"
