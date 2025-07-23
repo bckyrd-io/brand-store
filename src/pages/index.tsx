@@ -19,18 +19,18 @@ export default function Home() {
   const slides = [
     {
       image: '/images.jpg',
-      title: 'Fresh from Our Fields to Your Table',
-      description: 'Experience the finest organic produce, harvested daily from our sustainable farms.'
+      title: 'Welcome to Our Farm',
+      description: 'A working farm that combines sustainable agriculture with family-friendly experiences. Visit our farm shop in town or join us for farm activities.'
     },
     {
       image: '/images.jpg',
-      title: 'Sustainable Farming Practices',
-      description: 'We use eco-friendly methods to grow healthier food and protect our environment.'
+      title: 'Farm Adventures',
+      description: 'Create lasting memories with camping, playground fun, and guided farm tours. Perfect for families and nature enthusiasts.'
     },
     {
       image: '/images.jpg',
-      title: 'Visit Our Farm',
-      description: 'Experience farm life firsthand with our guided tours and activities.'
+      title: 'Farm to Town',
+      description: 'Shop fresh produce at our town depot or stay at our comfortable lodge. Experience farm connection while enjoying urban conveniences.'
     }
   ];
 
@@ -71,18 +71,18 @@ export default function Home() {
 
   const activities = [
     {
-      title: 'Farm Tours',
-      description: 'Experience life on a working farm with our guided tours.',
+      title: 'Town Lodge Experience',
+      description: 'Stay in our modern, comfortable lodge in town with full amenities. Perfect for those who want to experience farm life while enjoying urban conveniences. Features Airbnb-style accommodations with easy access to both city attractions and farm activities.',
       image: '/images.jpg',
     },
     {
-      title: 'Greenhouse Visits',
-      description: 'Learn about sustainable growing practices in our modern greenhouses.',
+      title: 'Wild Farm Camping',
+      description: 'Immerse yourself in nature with our unique farm camping experience. Sleep under the stars in the midst of our organic farm, with luxury glamping tents and eco-friendly facilities. Perfect for adventure seekers and nature lovers.',
       image: '/images.jpg',
     },
     {
-      title: 'Harvesting Experience',
-      description: 'Join us for seasonal harvesting activities.',
+      title: 'Family Adventure Playground',
+      description: 'A perfect blend of fun and adventure for all ages. Featuring obstacle courses, trampolines, sand soccer fields, and extensive boardgame collection. Host your family events in our spacious, activity-filled environment.',
       image: '/images.jpg',
     },
   ];
@@ -144,45 +144,45 @@ export default function Home() {
         {/* Hero Section */}
         <section className="pt-8 pb-24">
           <div className="container mx-auto px-4">
-            <div className="w-full space-y-6">
-              <div className="relative w-full h-[60vh] md:h-[70vh] rounded overflow-hidden shadow-2xl">
+            <div className="w-full max-w-7xl mx-auto space-y-8">
+              <div className="relative w-full aspect-[1.59/1] rounded-2xl overflow-hidden">
                 <Image
                   src={slides[currentSlide].image}
                   alt={slides[currentSlide].title}
                   fill
-                  className="object-contain"
+                  className="object-cover"
                   priority
                 />
               </div>
-              
-              <div className="flex gap-4 px-0 py-2">
+              <div className="flex gap-4 justify-left">
                 {slides.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
-                    className={`w-6 h-6 transition-all ${
-                      currentSlide === index 
-                        ? 'bg-primary' 
+                    className={`w-2 h-2 rounded-full transition-all ${currentSlide === index
+                        ? 'bg-primary w-8'
                         : 'bg-gray-200 hover:bg-gray-300'
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
-            </div>
-
-            <div className="max-w-3xl text-left">
-             <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              we&apos;re committed to nurturing both our land and our community.
-              </p>
-              <div className="flex gap-4 justify-left">
-                <Link href="/products"
-                  className="bg-primary text-white px-8 py-3 hover:bg-primary/90 transition-colors inline-block">
-                  Shop Now
-                </Link>
-                <button className="bg-gray-100 text-gray-900 px-8 py-3 hover:bg-gray-200 transition-colors">
-                  Learn More
-                </button>
+              <div className="max-w-2xl ml-0  text-left space-y-6">
+                <p className="text-gray-600 text-xl leading-relaxed max-w-xl">
+                  {slides[currentSlide].description}
+                </p>
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <Link href="/products"
+                    className="bg-primary text-white px-4 py-2 hover:bg-primary/90 transition-colors inline-block ">
+                    Farm Shop
+                  </Link>
+                  <Link href="/reservations"
+                    className="inline-block bg-none text-primary px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white transition-colors">
+                    Book a Visit
+                  </Link>
+                </div>
               </div>
+
+
             </div>
           </div>
         </section>
@@ -190,9 +190,8 @@ export default function Home() {
         {/* Products Section */}
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4">Featured Products</h2>
-              <p className="text-gray-600 text-lg">Fresh from our farms to your table</p>
+            <div className="max-w-2xl text-left mb-16">
+              <h2 className="text-3xl font-bold mb-4">From Our Farm</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
               {products.map((product, index) => (
@@ -210,7 +209,7 @@ export default function Home() {
                     <p className="text-gray-600 mb-6 text-base">{product.description}</p>
                     <div className="flex justify-between items-center">
                       <span className="text-xl font-bold text-primary">${product.price}</span>
-                      <button 
+                      <button
                         onClick={() => addToCart({
                           id: product.id,
                           name: product.name,
@@ -232,22 +231,36 @@ export default function Home() {
         {/* Activities Section */}
         <section className="py-24">
           <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4">Farm Activities</h2>
-              <p className="text-gray-600 text-lg">Experience the farm life firsthand through our educational and engaging activities.</p>
-            </div>
-
-            <div className="space-y-8 max-w-7xl mx-auto ">
-              {activities.map((activity, index) => (
+            <div className="space-y-16 max-w-7xl mx-auto">
+              {[
+                {
+                  title: "Farm Adventures",
+                  description: "Experience authentic farm life with our guided tours, seasonal fruit picking, and animal feeding sessions. Perfect for families looking to connect with nature and learn about sustainable farming.",
+                  image: '/images.jpg',
+                  link: '/activities#farm'
+                },
+                {
+                  title: "Adventure Playground",
+                  description: "A perfect outdoor playground featuring obstacle courses, trampolines, and sand soccer fields. Host memorable family events in our spacious, activity-filled environment.",
+                  image: '/images.jpg',
+                  link: '/activities#playground'
+                },
+                {
+                  title: "Town Lodge",
+                  description: "Stay in our modern lodge in town with easy access to both urban amenities and farm experiences. Features comfortable rooms, farm shop, and regular shuttle service to the farm.",
+                  image: '/images.jpg',
+                  link: '/accommodation'
+                }
+              ].map((activity, index) => (
                 <div key={index} className="flex flex-col md:flex-row gap-12 pb-8">
-                  <div className="flex-1 flex flex-col justify-center">
-                    <h3 className="text-2xl font-bold mb-4">{activity.title}</h3>
-                    <p className="text-gray-600 text-lg mb-8">{activity.description}</p>
-                    <Link 
-                      href="/activities"
-                      className="inline-block bg-none text-primary px-8 py-3 border-2 border-primary hover:bg-primary hover:text-white transition-colors w-fit"
+                  <div className="flex-1 flex flex-col justify-center space-y-6">
+                    <h3 className="text-2xl font-bold">{activity.title}</h3>
+                    <p className="text-gray-600 text-lg">{activity.description}</p>
+                    <Link
+                      href={activity.link}
+                      className="inline-block bg-none text-primary px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white transition-colors w-fit"
                     >
-                      Learn More
+                      Reserve
                     </Link>
                   </div>
                   <div className="flex-1 relative h-[400px] rounded-lg overflow-hidden">
@@ -267,55 +280,107 @@ export default function Home() {
         {/* Research Section */}
         <section className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4">Farm Research & Innovation</h2>
-              <p className="text-gray-600 text-lg">Discover our latest agricultural innovations and research</p>
+            <div className="max-w-2xl text-left mb-16">
+              <h2 className="text-3xl font-bold mb-4">Research & Innovation</h2>
+              <p className="text-gray-600 text-lg">Collaborating with agricultural institutions on sustainable farming practices</p>
             </div>
 
             <div className="grid grid-cols-1 gap-8 max-w-7xl mx-auto">
-              {posts.map((post, index) => (
-                <article key={index} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-                  <div className="flex flex-col md:flex-row">
-                    <div className="relative w-full md:w-72 h-64 overflow-hidden">
-                      <Image
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        className="object-cover rounded-lg"
-                      />
-                    </div>
-                    <div className="flex-1 p-8">
-                      <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-                        {post.category}
-                      </span>
-                      <h3 className="text-2xl font-bold mb-4">{post.title}</h3>
-                      <p className="text-gray-600 mb-6 text-lg">{post.excerpt}</p>
-                      <button className="text-primary font-semibold hover:underline text-lg flex items-center gap-2">
-                        Read More <span className="text-xl">→</span>
-                      </button>
-                    </div>
+              <article className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div className="flex flex-col md:flex-row">
+                  <div className="relative w-full md:w-72 h-64 overflow-hidden">
+                    <Image
+                      src="/images.jpg"
+                      alt="Permaculture Transition"
+                      fill
+                      className="object-cover rounded-lg"
+                    />
                   </div>
-                </article>
-              ))}
+                  <div className="flex-1 p-8">
+                    <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
+                      Permaculture
+                    </span>
+                    <h3 className="text-2xl font-bold mb-4">Our Journey to Permaculture</h3>
+                    <p className="text-gray-600 mb-6 text-lg">Transforming conventional farming into a sustainable ecosystem. Working with local agricultural experts to implement permaculture principles...</p>
+                    <Link href="/research/permaculture" className="text-primary font-semibold hover:underline text-lg flex items-center gap-2">
+                      Learn More <span className="text-xl">→</span>
+                    </Link>
+                  </div>
+                </div>
+              </article>
+
+              <article className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div className="flex flex-col md:flex-row">
+                  <div className="relative w-full md:w-72 h-64 overflow-hidden">
+                    <Image
+                      src="/images.jpg"
+                      alt="Research Collaboration"
+                      fill
+                      className="object-cover rounded-lg"
+                    />
+                  </div>
+                  <div className="flex-1 p-8">
+                    <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
+                      Collaboration
+                    </span>
+                    <h3 className="text-2xl font-bold mb-4">Research Partnerships</h3>
+                    <p className="text-gray-600 mb-6 text-lg">Partnering with government agricultural departments and research institutions to study and implement sustainable farming practices...</p>
+                    <Link href="/research/partnerships" className="text-primary font-semibold hover:underline text-lg flex items-center gap-2">
+                      View Projects <span className="text-xl">→</span>
+                    </Link>
+                  </div>
+                </div>
+              </article>
+
+              <article className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div className="flex flex-col md:flex-row">
+                  <div className="relative w-full md:w-72 h-64 overflow-hidden">
+                    <Image
+                      src="/images.jpg"
+                      alt="Educational Programs"
+                      fill
+                      className="object-cover rounded-lg"
+                    />
+                  </div>
+                  <div className="flex-1 p-8">
+                    <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
+                      Education
+                    </span>
+                    <h3 className="text-2xl font-bold mb-4">Learning Center</h3>
+                    <p className="text-gray-600 mb-6 text-lg">Hosting workshops and training sessions for farmers, students, and researchers interested in sustainable agriculture and permaculture...</p>
+                    <Link href="/research/education" className="text-primary font-semibold hover:underline text-lg flex items-center gap-2">
+                      Join Programs <span className="text-xl">→</span>
+                    </Link>
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="py-24">
+        {/* Visit Us Section */}
+        <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4">Why Choose GroundFarm</h2>
-              <p className="text-gray-600 text-lg">Discover how we&apos;re committed to serving you better</p>
-            </div>
+            <div className="max-w-2xl py-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
 
-            <div className="max-w-7xl mx-auto space-y-4">
-              {faqs.map((faq, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 p-6">
-                  <h3 className="text-lg font-semibold mb-2">{faq.question}</h3>
-                  <p className="text-gray-600">{faq.answer}</p>
+                <div className="flex-1">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="font-semibold mb-2">🚚 Delivery Service</h3>
+                      <p className="text-gray-600">Free delivery within 20 miles of our town shop for orders over $30</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-2">🎟️ Farm Visits</h3>
+                      <p className="text-gray-600">Book your farm experience in advance. Special rates for groups</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-2">🏕️ Camping</h3>
+                      <p className="text-gray-600">Seasonal camping available from March to October. Equipment rental available</p>
+                    </div>
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
