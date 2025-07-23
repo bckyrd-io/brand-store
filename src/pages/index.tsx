@@ -64,23 +64,45 @@ export default function Home() {
     }
   ];
 
+  const nextSlide = (currentSlide + 1) % slides.length;
+
   return (
     <div className={`${spaceGrotesk.variable} font-sans`}>
       <Header />
       <main className="pt-16">
-        {/* Hero Section */}
-        <section className=" pb-24">
+        {/* Hero Section with Enhanced Slider */}
+        <section className="pb-24">
           <div className="container mx-auto px-4">
             <div className="w-full max-w-7xl mx-auto space-y-8">
-              <div className="relative w-full aspect-[1.59/1] rounded-2xl overflow-hidden">
-                <Image
-                  src={slides[currentSlide].image}
-                  alt={slides[currentSlide].title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
+              {/* Peek Carousel Container */}
+              <div className="relative w-full overflow-hidden rounded-2xl">
+                <div className="flex lg:gap-8 md:gap-2 gap-2">
+                  {/* Current Full Image */}
+                  <div className="relative aspect-[1.59/1] flex-shrink-0 flex-grow-[3]">
+                    <Image
+                      src={slides[currentSlide].image}
+                      alt={slides[currentSlide].title}
+                      fill
+                      className="object-cover rounded-2xl"
+                      priority
+                    />
+                  </div>
+
+                  {/* Next Image Preview (Quarter visible) */}
+                  <div
+                    className="relative aspect-[1.59/1] flex-shrink-0 cursor-pointer opacity-80 hover:opacity-100 transition-opacity duration-300 flex-grow-[1]"
+                    onClick={() => setCurrentSlide(nextSlide)}
+                  >
+                    <Image
+                      src={slides[nextSlide].image}
+                      alt={slides[nextSlide].title}
+                      fill
+                      className="object-cover rounded-2xl"
+                    />
+                  </div>
+                </div>
               </div>
+
               <div className="flex gap-4 justify-left">
                 {slides.map((_, index) => (
                   <button
@@ -93,7 +115,7 @@ export default function Home() {
                   />
                 ))}
               </div>
-              <div className="max-w-2xl ml-0  text-left space-y-6">
+              <div className="max-w-2xl ml-0 text-left space-y-6">
                 <p className="text-gray-600 text-xl leading-relaxed max-w-xl">
                   {slides[currentSlide].description}
                 </p>
@@ -153,7 +175,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-        {/* Activities Section */}
+
+        {/* Activities Section - Fixed for Mobile Responsiveness */}
         <section className="py-24">
           <div className="container mx-auto px-4">
             <div className="space-y-16 max-w-7xl mx-auto">
@@ -177,8 +200,8 @@ export default function Home() {
                   link: '/accommodation'
                 }
               ].map((activity, index) => (
-                <div key={index} className="flex flex-col md:flex-row gap-12 pb-8">
-                  <div className="flex-1 flex flex-col justify-center space-y-6">
+                <div key={index} className="flex flex-col lg:flex-row gap-8 lg:gap-12 pb-8">
+                  <div className="flex-1 flex flex-col justify-center space-y-6 order-2 lg:order-1">
                     <h3 className="text-2xl font-bold">{activity.title}</h3>
                     <p className="text-gray-600 text-lg">{activity.description}</p>
                     <Link
@@ -188,13 +211,16 @@ export default function Home() {
                       Reserve
                     </Link>
                   </div>
-                  <div className="flex-1 relative h-[400px] rounded-lg overflow-hidden">
-                    <Image
-                      src={activity.image}
-                      alt={activity.title}
-                      fill
-                      className="object-cover rounded-lg"
-                    />
+                  <div className="flex-1 order-1 lg:order-2">
+                    <div className="relative w-full h-64 sm:h-80 lg:h-[400px] rounded-lg overflow-hidden">
+                      <Image
+                        src={activity.image}
+                        alt={activity.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vm, 50vw"
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
