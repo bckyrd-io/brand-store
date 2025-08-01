@@ -71,7 +71,7 @@ export default function Home() {
       <Header />
       <main className="pt-16">
         {/* Hero Section with Enhanced Slider */}
-        <section className="pb-24">
+        <section id="hero" className="pb-24">
           <div className="container mx-auto px-4">
             <div className="w-full max-w-7xl mx-auto space-y-8">
               {/* Peek Carousel Container */}
@@ -135,7 +135,7 @@ export default function Home() {
         </section>
 
         {/* Products Section */}
-        <section className="py-24 bg-gray-50">
+        <section id="products" className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl text-left mb-16">
               <h2 className="text-3xl font-bold mb-4">From Our Farm</h2>
@@ -177,7 +177,7 @@ export default function Home() {
         </section>
 
         {/* Activities Section - Fixed for Mobile Responsiveness */}
-        <section className="py-24">
+        <section id="activities" className="py-24">
           <div className="container mx-auto px-4">
             <div className="space-y-16 max-w-7xl mx-auto">
               {[
@@ -229,7 +229,7 @@ export default function Home() {
         </section>
 
         {/* Research Section */}
-        <section className="py-24 bg-gray-50">
+        <section id="research" className="py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl text-left mb-16">
               <h2 className="text-3xl font-bold mb-4">Research & Innovation</h2>
@@ -310,7 +310,7 @@ export default function Home() {
         </section>
 
         {/* Visit Us Section */}
-        <section className="py-24 bg-white">
+        <section id="visit" className="py-24 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl py-12">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
