@@ -15,6 +15,12 @@ const spaceGrotesk = Space_Grotesk({
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { addToCart } = useCart();
+  const [showCartNotification, setShowCartNotification] = useState(false);
+  // Hide notification after 3 seconds
+  const triggerCartNotification = () => {
+    setShowCartNotification(true);
+    setTimeout(() => setShowCartNotification(false), 3000);
+  };
 
   const slides = [
     {
@@ -74,6 +80,13 @@ export default function Home() {
         <section id="hero" className="pb-24">
           <div className="container mx-auto px-4">
             <div className="w-full max-w-7xl mx-auto space-y-8">
+              {/* Cart Notification Popup */}
+              {showCartNotification && (
+                <div className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-primary text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-3 animate-fade-in">
+                  <span>🛒</span>
+                  <span>Item added! <Link href="/cart" className="underline font-semibold">Visit your cart</Link> to continue checkout.</span>
+                </div>
+              )}
               {/* Peek Carousel Container */}
               <div className="relative w-full overflow-hidden rounded-2xl">
                 <div className="flex lg:gap-8 md:gap-2 gap-2">
@@ -122,21 +135,17 @@ export default function Home() {
                 <div className="flex flex-wrap gap-4 pt-2">
                   <button
                     className="bg-primary text-white px-4 py-2 hover:bg-primary/90 transition-colors inline-block "
-                    onClick={() => addToCart({
-                      id: 'service-farm-shop',
-                      name: 'Farm Shop Visit',
-                      price: 4000,
-                      image: '/farm_shop.jpg'
-                    })}
+                    onClick={() => {
+                      const el = document.getElementById('products');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
                   >Farm Shop</button>
                   <button
                     className="inline-block bg-none text-primary px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white transition-colors"
-                    onClick={() => addToCart({
-                      id: 'service-book-visit',
-                      name: 'Book a Farm Visit',
-                      price: 6000,
-                      image: '/farm_playground.jpg'
-                    })}
+                    onClick={() => {
+                      const el = document.getElementById('activities');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
                   >Book a Visit</button>
                 </div>
               </div>
@@ -167,12 +176,15 @@ export default function Home() {
                     <div className="flex justify-between items-center">
                       <span className="text-xl font-bold text-primary">MWK{product.price}</span>
                       <button
-                        onClick={() => addToCart({
-                          id: product.id,
-                          name: product.name,
-                          price: product.price,
-                          image: product.image
-                        })}
+                        onClick={() => {
+                          addToCart({
+                            id: product.id,
+                            name: product.name,
+                            price: product.price,
+                            image: product.image
+                          });
+                          triggerCartNotification();
+                        }}
                         className="bg-primary text-white px-6 py-2 hover:bg-primary-dark transition-colors duration-300 font-medium"
                         aria-label={`Add ${product.name} to cart`}
                       >
@@ -216,12 +228,15 @@ export default function Home() {
                     <p className="text-gray-600 text-lg">{activity.description}</p>
                     <button
                       className="inline-block bg-none text-primary px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white transition-colors w-fit"
-                      onClick={() => addToCart({
-                        id: `service-${index}`,
-                        name: activity.title,
-                        price: 5000 + (index * 2000), // Example prices for services
-                        image: activity.image
-                      })}
+                      onClick={() => {
+                        addToCart({
+                          id: `service-${index}`,
+                          name: activity.title,
+                          price: 5000 + (index * 2000), // Example prices for services
+                          image: activity.image
+                        });
+                        triggerCartNotification();
+                      }}
                     >Reserve</button>
                   </div>
                   <div className="flex-1 order-1 lg:order-2">
@@ -337,28 +352,12 @@ export default function Home() {
                     <div>
                       <h3 className="font-semibold mb-2">🎟️ Farm Visits</h3>
                       <p className="text-gray-600">Book your farm experience in advance. Special rates for groups</p>
-                      <button
-                        className="mt-2 bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition-colors"
-                        onClick={() => addToCart({
-                          id: 'service-farm-visit',
-                          name: 'Farm Visit Reservation',
-                          price: 6000,
-                          image: '/farm_playground.jpg'
-                        })}
-                      >Reserve Farm Visit</button>
+                     
                     </div>
                     <div>
                       <h3 className="font-semibold mb-2">🏕️ Camping</h3>
                       <p className="text-gray-600">Seasonal camping available from March to October. Equipment rental available</p>
-                      <button
-                        className="mt-2 bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition-colors"
-                        onClick={() => addToCart({
-                          id: 'service-camping',
-                          name: 'Camping Reservation',
-                          price: 8000,
-                          image: '/trampoline.jpg'
-                        })}
-                      >Reserve Camping</button>
+                     
                     </div>
                   </div>
                 </div>
