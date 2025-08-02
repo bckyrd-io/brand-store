@@ -120,14 +120,24 @@ export default function Home() {
                   {slides[currentSlide].description}
                 </p>
                 <div className="flex flex-wrap gap-4 pt-2">
-                  <Link href="/products"
-                    className="bg-primary text-white px-4 py-2 hover:bg-primary/90 transition-colors inline-block ">
-                    Farm Shop
-                  </Link>
-                  <Link href="/reservations"
-                    className="inline-block bg-none text-primary px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white transition-colors">
-                    Book a Visit
-                  </Link>
+                  <button
+                    className="bg-primary text-white px-4 py-2 hover:bg-primary/90 transition-colors inline-block "
+                    onClick={() => addToCart({
+                      id: 'service-farm-shop',
+                      name: 'Farm Shop Visit',
+                      price: 4000,
+                      image: '/farm_shop.jpg'
+                    })}
+                  >Farm Shop</button>
+                  <button
+                    className="inline-block bg-none text-primary px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white transition-colors"
+                    onClick={() => addToCart({
+                      id: 'service-book-visit',
+                      name: 'Book a Farm Visit',
+                      price: 6000,
+                      image: '/farm_playground.jpg'
+                    })}
+                  >Book a Visit</button>
                 </div>
               </div>
             </div>
@@ -155,7 +165,7 @@ export default function Home() {
                     <h3 className="text-xl font-semibold mb-3">{product.name}</h3>
                     <p className="text-gray-600 mb-6 text-base">{product.description}</p>
                     <div className="flex justify-between items-center">
-                      <span className="text-xl font-bold text-primary">${product.price}</span>
+                      <span className="text-xl font-bold text-primary">MWK{product.price}</span>
                       <button
                         onClick={() => addToCart({
                           id: product.id,
@@ -204,12 +214,15 @@ export default function Home() {
                   <div className="flex-1 flex flex-col justify-center space-y-6 order-2 lg:order-1">
                     <h3 className="text-2xl font-bold">{activity.title}</h3>
                     <p className="text-gray-600 text-lg">{activity.description}</p>
-                    <Link
-                      href={activity.link}
+                    <button
                       className="inline-block bg-none text-primary px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white transition-colors w-fit"
-                    >
-                      Reserve
-                    </Link>
+                      onClick={() => addToCart({
+                        id: `service-${index}`,
+                        name: activity.title,
+                        price: 5000 + (index * 2000), // Example prices for services
+                        image: activity.image
+                      })}
+                    >Reserve</button>
                   </div>
                   <div className="flex-1 order-1 lg:order-2">
                     <div className="relative w-full h-64 sm:h-80 lg:h-[400px] rounded-lg overflow-hidden">
@@ -319,15 +332,33 @@ export default function Home() {
                   <div className="space-y-6">
                     <div>
                       <h3 className="font-semibold mb-2">🚚 Delivery Service</h3>
-                      <p className="text-gray-600">Free delivery within 20 miles of our town shop for orders over $30</p>
+                      <p className="text-gray-600">Free delivery within 20 miles of our town shop for orders over MWK 30,000</p>
                     </div>
                     <div>
                       <h3 className="font-semibold mb-2">🎟️ Farm Visits</h3>
                       <p className="text-gray-600">Book your farm experience in advance. Special rates for groups</p>
+                      <button
+                        className="mt-2 bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition-colors"
+                        onClick={() => addToCart({
+                          id: 'service-farm-visit',
+                          name: 'Farm Visit Reservation',
+                          price: 6000,
+                          image: '/farm_playground.jpg'
+                        })}
+                      >Reserve Farm Visit</button>
                     </div>
                     <div>
                       <h3 className="font-semibold mb-2">🏕️ Camping</h3>
                       <p className="text-gray-600">Seasonal camping available from March to October. Equipment rental available</p>
+                      <button
+                        className="mt-2 bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition-colors"
+                        onClick={() => addToCart({
+                          id: 'service-camping',
+                          name: 'Camping Reservation',
+                          price: 8000,
+                          image: '/trampoline.jpg'
+                        })}
+                      >Reserve Camping</button>
                     </div>
                   </div>
                 </div>
