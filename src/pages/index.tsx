@@ -79,12 +79,12 @@ export default function Home() {
         {/* Hero Section with Enhanced Slider */}
         <section id="hero" className="pb-24">
           <div className="container mx-auto px-4">
-            <div className="w-full max-w-7xl mx-auto space-y-8">
+            <div className="w-full max-w-7xl  mx-auto space-y-8">
               {/* Cart Notification Popup */}
               {showCartNotification && (
-                <div className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-primary text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-3 animate-fade-in">
-                  <span>🛒</span>
-                  <span>Item added! <Link href="/cart" className="underline font-semibold">Visit your cart</Link> to continue checkout.</span>
+                <div className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-primary text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 animate-fade-in w-[90vw] max-w-md sm:max-w-lg text-center break-words">
+                  <span className="text-2xl">🛒</span>
+                  <span className="flex-1">Item added! <Link href="/cart" className="underline font-semibold">Visit your cart</Link> to continue checkout.</span>
                 </div>
               )}
               {/* Peek Carousel Container */}
