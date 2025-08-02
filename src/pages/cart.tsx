@@ -1,28 +1,28 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useCart } from '../context/CartContext';
 
 
 
 export default function Cart() {
-  const router = useRouter();
 
-  // This would typically come from a cart state management system
-  const cartItems = [
-    {
-      id: '1',
-      name: 'Fresh Organic Vegetables',
-      price: 24.99,
-      quantity: 1,
-      image: '/products/vegetables.jpg'
-    },
-    // Add other cart items here
-  ];
-
-  const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-  const shipping = 5.99;
+  const { items, removeFromCart, updateQuantity } = useCart();
+  const cartItems = items;
+  const subtotal = cartItems.reduce((total: number, item: { price: number; quantity: number }) => total + (item.price * item.quantity), 0);
+  const shipping = cartItems.length > 0 ? 1500 : 0; // MWK shipping
   const total = subtotal + shipping;
+
+  // WhatsApp checkout handler
+  const handleWhatsAppCheckout = () => {
+    const message = `Order from GroundFarm:%0A` +
+      cartItems.map((item: { name: string; quantity: number; price: number }) => `- ${item.name} x${item.quantity} (MWK ${item.price.toLocaleString('en-MW')})`).join('%0A') +
+      `%0A--------------------%0A` +
+      `Subtotal: MWK ${subtotal.toLocaleString('en-MW')}%0A` +
+      `Shipping: MWK ${shipping.toLocaleString('en-MW')}%0A` +
+      `Total: MWK ${total.toLocaleString('en-MW')}`;
+    window.open(`https://wa.me/265885040528?text=${message}`, '_blank');
+  };
 
   return (
     <div>
@@ -33,7 +33,9 @@ export default function Cart() {
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
-              {cartItems.map((item) => (
+              {cartItems.length === 0 ? (
+                <div className="text-gray-500 text-lg">Your cart is empty.</div>
+              ) : cartItems.map((item) => (
                 <div key={item.id} className="flex gap-4 items-center p-4 bg-white rounded-lg shadow-md mb-4">
                   <div className="relative w-24 h-24">
                     <Image
@@ -43,28 +45,26 @@ export default function Cart() {
                       className="object-cover rounded"
                     />
                   </div>
-                  
                   <div className="flex-1">
                     <h3 className="font-semibold">{item.name}</h3>
                     <p className="text-primary font-bold mt-1">
-                      ${item.price.toFixed(2)}
+                      MWK {item.price.toLocaleString('en-MW')}
                     </p>
                   </div>
-                  
                   <div className="flex items-center gap-4">
                     <select
                       value={item.quantity}
-                      onChange={() => {}}
+                      onChange={e => updateQuantity(item.id, Number(e.target.value))}
                       className="border rounded-lg px-3 py-2"
                     >
                       {[1, 2, 3, 4, 5].map(num => (
                         <option key={num} value={num}>{num}</option>
                       ))}
                     </select>
-                    
-                    <button className="text-red-500 hover:text-red-600">
-                      Remove
-                    </button>
+                    <button
+                      className="text-red-500 hover:text-red-600"
+                      onClick={() => removeFromCart(item.id)}
+                    >Remove</button>
                   </div>
                 </div>
               ))}
@@ -76,25 +76,26 @@ export default function Cart() {
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>MWK {subtotal.toLocaleString('en-MW')}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping</span>
-                  <span>${shipping.toFixed(2)}</span>
+                  <span>MWK {shipping.toLocaleString('en-MW')}</span>
                 </div>
                 <div className="border-t pt-3">
                   <div className="flex justify-between font-bold">
                     <span>Total</span>
-                    <span>${total.toFixed(2)}</span>
+                    <span>MWK {total.toLocaleString('en-MW')}</span>
                   </div>
                 </div>
               </div>
               
               <button
-                onClick={() => router.push('/checkout')}
+                onClick={handleWhatsAppCheckout}
                 className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transition-colors"
+                disabled={cartItems.length === 0}
               >
-                Proceed to Checkout
+                Checkout via WhatsApp
               </button>
             </div>
           </div>
