@@ -84,7 +84,7 @@ export default function Home() {
               {showCartNotification && (
                 <div className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 bg-primary text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 animate-fade-in w-[90vw] max-w-md sm:max-w-lg text-center break-words">
                   <span className="text-2xl">🛒</span>
-                  <span className="flex-1">Item added! <Link href="/cart" className="underline font-semibold">Visit your cart</Link> to continue checkout.</span>
+                  <span className="flex-1">Item added! <Link href="/checkout" className="underline font-semibold">Visit your cart</Link> to continue checkout.</span>
                 </div>
               )}
               {/* Peek Carousel Container */}
@@ -173,7 +173,7 @@ export default function Home() {
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-3">{product.name}</h3>
                     <p className="text-gray-600 mb-6 text-base">{product.description}</p>
-                    <div className="flex justify-between items-center">
+                    <div className="flex flex-col items-start gap-3">
                       <span className="text-xl font-bold text-primary">MWK{product.price}</span>
                       <button
                         onClick={() => {
@@ -185,7 +185,7 @@ export default function Home() {
                           });
                           triggerCartNotification();
                         }}
-                        className="bg-primary text-white px-6 py-2 hover:bg-primary-dark transition-colors duration-300 font-medium"
+                        className="bg-primary text-white px-6 py-2 hover:bg-primary-dark transition-colors duration-300 font-medium w-full mt-1"
                         aria-label={`Add ${product.name} to cart`}
                       >
                         Add to Cart
@@ -204,20 +204,41 @@ export default function Home() {
             <div className="space-y-16 max-w-7xl mx-auto">
               {[
                 {
+                  id: '0',
                   title: "Farm Adventures",
-                  description: "Experience authentic farm life with our guided tours, seasonal fruit picking, and animal feeding sessions. Perfect for families looking to connect with nature and learn about sustainable farming.",
+                  short: "Experience authentic farm life with fun and learning for all ages.",
+                  features: [
+                    "Guided farm tours",
+                    "Seasonal fruit picking",
+                    "Animal feeding sessions",
+                    "Family-friendly activities"
+                  ],
                   image: '/adventure.jpg',
                   link: '/activities#farm'
                 },
                 {
+                  id: '1',
                   title: "Adventure Playground",
-                  description: "A perfect outdoor playground featuring obstacle courses, trampolines, and sand soccer fields. Host memorable family events in our spacious, activity-filled environment.",
+                  short: "A safe, exciting outdoor playground for kids and families.",
+                  features: [
+                    "Obstacle courses",
+                    "Trampolines",
+                    "Sand soccer fields",
+                    "Event hosting available"
+                  ],
                   image: '/trampoline.jpg',
                   link: '/activities#playground'
                 },
                 {
+                  id: '2',
                   title: "Town Lodge",
-                  description: "Stay in our modern lodge in town with easy access to both urban amenities and farm experiences. Features comfortable rooms, farm shop, and regular shuttle service to the farm.",
+                  short: "Modern lodge in town with easy access to farm and city.",
+                  features: [
+                    "Comfortable rooms",
+                    "Farm shop on site",
+                    "Shuttle service to farm",
+                    "Urban amenities nearby"
+                  ],
                   image: '/lodge.jpg',
                   link: '/accommodation'
                 }
@@ -225,19 +246,20 @@ export default function Home() {
                 <div key={index} className="flex flex-col lg:flex-row gap-8 lg:gap-12 pb-8">
                   <div className="flex-1 flex flex-col justify-center space-y-6 order-2 lg:order-1">
                     <h3 className="text-2xl font-bold">{activity.title}</h3>
-                    <p className="text-gray-600 text-lg">{activity.description}</p>
+                    <p className="text-gray-700 text-base mb-2">{activity.short}</p>
+                    <ul className="mb-2 space-y-1 text-gray-600 text-base">
+                      {activity.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="text-green-500 mt-0.5">✓</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
                     <button
                       className="inline-block bg-none text-primary px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white transition-colors w-fit"
-                      onClick={() => {
-                        addToCart({
-                          id: `service-${index}`,
-                          name: activity.title,
-                          price: 5000 + (index * 2000), // Example prices for services
-                          image: activity.image
-                        });
-                        triggerCartNotification();
-                      }}
-                    >Reserve</button>
+                    >
+                      <Link href={`/reserve/${activity.id}`} className="block w-full h-full">Reserve</Link>
+                    </button>
                   </div>
                   <div className="flex-1 order-1 lg:order-2">
                     <div className="relative w-full h-64 sm:h-80 lg:h-[400px] rounded-lg overflow-hidden">

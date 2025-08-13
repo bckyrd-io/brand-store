@@ -6,6 +6,12 @@ interface CartItem {
   price: number;
   quantity: number;
   image: string;
+  details?: {
+    date?: string;
+    people?: number;
+    [key: string]: any;
+  };
+  type?: 'reservation' | 'product';
 }
 
 interface CartContextType {
@@ -24,7 +30,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const addToCart = (product: Omit<CartItem, 'quantity'>) => {
     setItems(currentItems => {
       const existingItem = currentItems.find(item => item.id === product.id);
-      
+      // If it's a reservation, always add as a new item (unique id per reservation)
+      if (product.type === 'reservation') {
+        return [...currentItems, { ...product, quantity: 1 }];
+      }
+      // For products, increment quantity if exists
       if (existingItem) {
         return currentItems.map(item =>
           item.id === product.id
@@ -32,7 +42,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
             : item
         );
       }
-
       return [...currentItems, { ...product, quantity: 1 }];
     });
   };

@@ -89,7 +89,7 @@ export default function Header() {
           <button className="hover:text-primary transition-colors" aria-label="Open search" onClick={() => setSearchOpen(true)}>
             <Search size={24} />
           </button>
-          <Link href="/cart" className="hover:text-primary transition-colors relative">
+          <Link href="/checkout" className="hover:text-primary transition-colors relative">
             <ShoppingCart size={24} />
             <span className={`absolute -top-2 -right-2 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center ${
               cartCount > 0 ? 'bg-primary' : 'bg-gray-400'

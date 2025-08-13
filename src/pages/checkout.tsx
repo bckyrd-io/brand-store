@@ -3,10 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useCart } from '../context/CartContext';
 
-
-
 export default function Checkout() {
-
   const { items, removeFromCart, updateQuantity } = useCart();
   const cartItems = items;
   const subtotal = cartItems.reduce((total: number, item: { price: number; quantity: number }) => total + (item.price * item.quantity), 0);
@@ -59,9 +56,10 @@ export default function Checkout() {
                       MWK {item.price.toLocaleString('en-MW')}
                     </p>
                     {item.type === 'reservation' && item.details && (
-                      <div className="text-sm text-gray-600 mt-2">
-                        <div>Date: <span className="font-medium">{item.details.date}</span></div>
-                        <div>Guests: <span className="font-medium">{item.details.people}</span></div>
+                      <div className="text-sm text-gray-600 mt-2 space-y-1">
+                        <div>Check-in: <span className="font-medium">{item.details.checkIn}</span></div>
+                        <div>Check-out: <span className="font-medium">{item.details.checkOut}</span></div>
+                        <div>Guests: <span className="font-medium">{item.details.guests}</span></div>
                       </div>
                     )}
                   </div>
