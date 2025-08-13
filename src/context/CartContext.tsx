@@ -1,18 +1,6 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
 
-interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-  details?: {
-    date?: string;
-    people?: number;
-    [key: string]: any;
-  };
-  type?: 'reservation' | 'product';
-}
+import { createContext, useContext, useState, ReactNode } from 'react';
+import type { CartItem } from '../types/cart';
 
 interface CartContextType {
   items: CartItem[];

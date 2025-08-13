@@ -1,3 +1,4 @@
+import type { CartItem } from '../types/cart';
 import Image from 'next/image';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -11,15 +12,14 @@ export default function Checkout() {
   const cartItems = items;
   const subtotal = cartItems.reduce((total: number, item: { price: number; quantity: number }) => total + (item.price * item.quantity), 0);
   // Free shipping for products, no shipping for reservations
-  const hasProduct = cartItems.some((item: any) => item.type !== 'reservation');
-  const hasReservation = cartItems.some((item: any) => item.type === 'reservation');
+  const hasProduct = cartItems.some((item: CartItem) => item.type !== 'reservation');
   const shipping = hasProduct ? 0 : 0;
   const total = subtotal + shipping;
 
   // WhatsApp checkout handler
   const handleWhatsAppCheckout = () => {
     const message = `Order from GroundFarm:%0A` +
-      cartItems.map((item: any) => {
+      cartItems.map((item: CartItem) => {
         let details = '';
         if (item.type === 'reservation' && item.details) {
           details = ` [Date: ${item.details.date}, Guests: ${item.details.people}]`;
@@ -43,7 +43,7 @@ export default function Checkout() {
             <div className="lg:col-span-2">
               {cartItems.length === 0 ? (
                 <div className="text-gray-500 text-lg">Your cart is empty.</div>
-              ) : cartItems.map((item: any) => (
+              ) : cartItems.map((item: CartItem) => (
                 <div key={item.id} className="flex gap-4 items-center p-4 bg-white rounded-lg shadow-md mb-4">
                   <div className="relative w-24 h-24">
                     <Image
