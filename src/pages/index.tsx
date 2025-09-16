@@ -32,13 +32,18 @@ export default function Home() {
       image: '/farm_playground.jpg',
       title: 'Farm Adventures',
       description: 'Create lasting memories with camping, playground fun, and guided farm tours. Perfect for families and nature enthusiasts.'
+    },
+    {
+      image: '/farm_playground.jpg',
+      title: 'Town Lodge',
+      description: 'Create lasting memories with camping, playground fun, and guided farm tours. Perfect for families and nature enthusiasts.'
     }
   ];
 
   const products = [
     {
       id: '1',
-      name: 'Fresh Organic Vegetables',
+      name: 'Murstad',
       price: 300.99,
       image: '/vegetables.jpg',
       category: 'Vegetables',
@@ -46,7 +51,7 @@ export default function Home() {
     },
     {
       id: '2',
-      name: 'Farm Fresh Eggs',
+      name: 'Greenpaper',
       price: 4000.99,
       image: '/eggs.jpg',
       category: 'Dairy',
@@ -54,7 +59,7 @@ export default function Home() {
     },
     {
       id: '3',
-      name: 'Organic Honey',
+      name: 'Pawpaw',
       price: 4900.99,
       image: '/honey.jpg',
       category: 'Natural',
@@ -62,12 +67,20 @@ export default function Home() {
     },
     {
       id: '4',
-      name: 'Fresh Fruits Basket',
+      name: 'Banana',
       price: 200.99,
       image: '/bananas.jpg',
       category: 'Fruits',
       description: 'A basket filled with a variety of seasonal, organic fruits.'
-    }
+    },
+    {
+      id: '5',
+      name: 'Paprika',
+      price: 4000.99,
+      image: '/eggs.jpg',
+      category: 'Vegetable',
+      description: 'Eggs collected daily from free-range hens for maximum freshness.'
+    },
   ];
 
   const nextSlide = (currentSlide + 1) % slides.length;
@@ -208,10 +221,11 @@ export default function Home() {
                   title: "Farm Adventures",
                   short: "Experience authentic farm life with fun and learning for all ages.",
                   features: [
+                    "Outdoor Camping",
                     "Guided farm tours",
                     "Seasonal fruit picking",
-                    "Animal feeding sessions",
-                    "Family-friendly activities"
+                    "Gardening",
+                    "Animal feeding sessions"
                   ],
                   image: '/adventure.jpg',
                   link: '/activities#farm'
@@ -223,8 +237,7 @@ export default function Home() {
                   features: [
                     "Obstacle courses",
                     "Trampolines",
-                    "Sand soccer fields",
-                    "Event hosting available"
+                    "Soccer fields"
                   ],
                   image: '/trampoline.jpg',
                   link: '/activities#playground'
@@ -235,9 +248,9 @@ export default function Home() {
                   short: "Modern lodge in town with easy access to farm and city.",
                   features: [
                     "Comfortable rooms",
+                    "Urban amenities nearby",
                     "Farm shop on site",
-                    "Shuttle service to farm",
-                    "Urban amenities nearby"
+                    "Car service to farm"
                   ],
                   image: '/lodge.jpg',
                   link: '/accommodation'
@@ -301,7 +314,7 @@ export default function Home() {
                     <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
                       Permaculture
                     </span>
-                    <h3 className="text-2xl font-bold mb-4">Our Journey to Permaculture</h3>
+                    <h3 className="text-2xl font-bold mb-4">Journey to Permaculture</h3>
                     <p className="text-gray-600 mb-6 text-lg">Transforming conventional farming into a sustainable ecosystem. Working with local agricultural experts to implement permaculture principles...</p>
                     <Link href="/research/permaculture" className="text-primary font-semibold hover:underline text-lg flex items-center gap-2">
                       Learn More <span className="text-xl">→</span>
@@ -345,10 +358,10 @@ export default function Home() {
                   </div>
                   <div className="flex-1 p-8">
                     <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-                      Education
+                      Tourism
                     </span>
-                    <h3 className="text-2xl font-bold mb-4">Learning Center</h3>
-                    <p className="text-gray-600 mb-6 text-lg">Hosting workshops and training sessions for farmers, students, and researchers interested in sustainable agriculture and permaculture...</p>
+                    <h3 className="text-2xl font-bold mb-4">Educational Visit</h3>
+                    <p className="text-gray-600 mb-6 text-lg">Training sessions for farmers, students, and researchers interested in sustainable agriculture and permaculture...</p>
                     <Link href="/research/education" className="text-primary font-semibold hover:underline text-lg flex items-center gap-2">
                       Join Programs <span className="text-xl">→</span>
                     </Link>
@@ -374,13 +387,14 @@ export default function Home() {
                     <div>
                       <h3 className="font-semibold mb-2">🎟️ Farm Visits</h3>
                       <p className="text-gray-600">Book your farm experience in advance. Special rates for groups</p>
-                     
+
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-2">🏕️ Camping</h3>
-                      <p className="text-gray-600">Seasonal camping available from March to October. Equipment rental available</p>
-                     
+                      <h3 className="font-semibold mb-2">🏕️ Camping/ Events</h3>
+                      <p className="text-gray-600">Seasonal camping available from August to November. Equipment rental available</p>
+
                     </div>
+                    
                   </div>
                 </div>
               </div>

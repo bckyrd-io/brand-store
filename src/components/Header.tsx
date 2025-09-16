@@ -2,17 +2,18 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ShoppingCart, Search, Menu } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import Image from 'next/image';
 export default function Header() {
   const { cartCount } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-  const [searchResults, setSearchResults] = useState<{text: string, id: string}[]>([]);
+  const [searchResults, setSearchResults] = useState<{ text: string, id: string }[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Collect all text nodes with ids for search
   const getAllSearchableNodes = () => {
-    const results: {text: string, id: string}[] = [];
+    const results: { text: string, id: string }[] = [];
     // Search all elements with id
     document.querySelectorAll('[id]').forEach(el => {
       const id = el.id;
@@ -73,8 +74,9 @@ export default function Header() {
 
   // Define the sections menu
   const sectionMap = [
-    { id: 'about', label: 'About', emoji: 'ℹ️' },
-    { id: 'products', label: 'Products', emoji: '🛒' },
+    { id: 'about', label: 'About', emoji: '🏠' },
+    { id: 'products', label: 'Shop', emoji: '🧺' },
+    { id: 'lodge', label: 'Lodge', emoji: '🛏️' },
     { id: 'contact', label: 'Contact', emoji: '📞' },
     // Add more sections as needed
   ];
@@ -82,8 +84,16 @@ export default function Header() {
   return (
     <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold text-primary">
-          groundfarm
+        <Link href="/" id='logo' className="flex text-primary font-bold items-center">
+          <Image
+            src="/favicon.ico"
+            alt="Balaza.Farm Logo"
+            width={40}
+            height={40}
+            className="h-10 w-auto"
+            priority
+          />
+          <span>BALAZA FARM</span>
         </Link>
         <div className="flex items-center gap-6">
           <button className="hover:text-primary transition-colors" aria-label="Open search" onClick={() => setSearchOpen(true)}>
@@ -91,9 +101,8 @@ export default function Header() {
           </button>
           <Link href="/checkout" className="hover:text-primary transition-colors relative">
             <ShoppingCart size={24} />
-            <span className={`absolute -top-2 -right-2 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center ${
-              cartCount > 0 ? 'bg-primary' : 'bg-gray-400'
-            }`}>
+            <span className={`absolute -top-2 -right-2 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center ${cartCount > 0 ? 'bg-primary' : 'bg-gray-400'
+              }`}>
               {cartCount}
             </span>
           </Link>
