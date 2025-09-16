@@ -24,17 +24,17 @@ export default function Home() {
 
   const slides = [
     {
-      image: '/farm_shop.jpg',
+      image: '/tour.png',
       title: 'Farm to Town',
       description: 'Shop fresh produce at our town depot or stay at our comfortable lodge. Experience farm connection while enjoying urban conveniences.'
     },
     {
-      image: '/farm_playground.jpg',
+      image: '/irrigation.jpeg',
       title: 'Farm Adventures',
       description: 'Create lasting memories with camping, playground fun, and guided farm tours. Perfect for families and nature enthusiasts.'
     },
     {
-      image: '/farm_playground.jpg',
+      image: '/education.png',
       title: 'Town Lodge',
       description: 'Create lasting memories with camping, playground fun, and guided farm tours. Perfect for families and nature enthusiasts.'
     }
@@ -43,25 +43,33 @@ export default function Home() {
   const products = [
     {
       id: '1',
-      name: 'Murstad',
+      name: 'Mustard',
       price: 300.99,
-      image: '/vegetables.jpg',
+      image: '/mustard.jpg',
       category: 'Vegetables',
       description: 'A selection of freshly picked organic vegetables from our farm.'
     },
     {
       id: '2',
-      name: 'Greenpaper',
+      name: 'Green pepper',
       price: 4000.99,
-      image: '/eggs.jpg',
+      image: '/pepper.jpg',
+      category: 'Dairy',
+      description: 'Eggs collected daily from free-range hens for maximum freshness.'
+    },
+    {
+      id: '6',
+      name: 'Tomato',
+      price: 4000.99,
+      image: '/bucket-tomato.jpg',
       category: 'Dairy',
       description: 'Eggs collected daily from free-range hens for maximum freshness.'
     },
     {
       id: '3',
-      name: 'Pawpaw',
+      name: 'Papaya',
       price: 4900.99,
-      image: '/honey.jpg',
+      image: '/papaya.jpg',
       category: 'Natural',
       description: 'Pure, raw honey harvested from our organic beehives.'
     },
@@ -75,9 +83,17 @@ export default function Home() {
     },
     {
       id: '5',
-      name: 'Paprika',
+      name: 'Beans',
       price: 4000.99,
-      image: '/eggs.jpg',
+      image: '/Beans.jpg',
+      category: 'Vegetable',
+      description: 'Eggs collected daily from free-range hens for maximum freshness.'
+    },
+    {
+      id: '7',
+      name: 'Onion',
+      price: 4000.99,
+      image: '/onion.jpg',
       category: 'Vegetable',
       description: 'Eggs collected daily from free-range hens for maximum freshness.'
     },
@@ -159,7 +175,7 @@ export default function Home() {
                       const el = document.getElementById('activities');
                       if (el) el.scrollIntoView({ behavior: 'smooth' });
                     }}
-                  >Book a Visit</button>
+                  >Take a Tour</button>
                 </div>
               </div>
             </div>
@@ -227,7 +243,7 @@ export default function Home() {
                     "Gardening",
                     "Animal feeding sessions"
                   ],
-                  image: '/adventure.jpg',
+                  image: '/tomato.png',
                   link: '/activities#farm'
                 },
                 {
@@ -239,7 +255,7 @@ export default function Home() {
                     "Trampolines",
                     "Soccer fields"
                   ],
-                  image: '/trampoline.jpg',
+                  image: '/adventure.png',
                   link: '/activities#playground'
                 },
                 {
@@ -304,7 +320,7 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row">
                   <div className="relative w-full md:w-72 h-64 overflow-hidden">
                     <Image
-                      src="/permaculture.jpg"
+                      src="/adventure.png"
                       alt="Permaculture Transition"
                       fill
                       className="object-cover rounded-lg"
@@ -327,7 +343,7 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row">
                   <div className="relative w-full md:w-72 h-64 overflow-hidden">
                     <Image
-                      src="/research.jpg"
+                      src="/research.png"
                       alt="Research Collaboration"
                       fill
                       className="object-cover rounded-lg"
@@ -350,7 +366,7 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row">
                   <div className="relative w-full md:w-72 h-64 overflow-hidden">
                     <Image
-                      src="/education.jpg"
+                      src="/education.png"
                       alt="Educational Programs"
                       fill
                       className="object-cover rounded-lg"
