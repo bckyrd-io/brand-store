@@ -24,18 +24,19 @@ export default function Home() {
 
   const slides = [
     {
-      image: '/tour.png',
+      image: '/adventure.png',
       title: 'Farm to Town',
       description: 'Shop fresh produce at our town depot or stay at our comfortable lodge. Experience farm connection while enjoying urban conveniences.'
+    }
+    ,
+    {
+      image: '/bed.jpg',
+      title: 'Town Lodge',
+      description: 'Create lasting memories with camping, playground fun, and guided farm tours. Perfect for families and nature enthusiasts.'
     },
     {
       image: '/irrigation.jpeg',
       title: 'Farm Adventures',
-      description: 'Create lasting memories with camping, playground fun, and guided farm tours. Perfect for families and nature enthusiasts.'
-    },
-    {
-      image: '/education.png',
-      title: 'Town Lodge',
       description: 'Create lasting memories with camping, playground fun, and guided farm tours. Perfect for families and nature enthusiasts.'
     }
   ];
@@ -94,6 +95,22 @@ export default function Home() {
       name: 'Onion',
       price: 4000.99,
       image: '/onion.jpg',
+      category: 'Vegetable',
+      description: 'Eggs collected daily from free-range hens for maximum freshness.'
+    },
+    {
+      id: '8',
+      name: 'Strawberry',
+      price: 4000.99,
+      image: '/strawberry.jpg',
+      category: 'Vegetable',
+      description: 'Eggs collected daily from free-range hens for maximum freshness.'
+    },
+    {
+      id: '9',
+      name: 'Cucumber',
+      price: 4000.99,
+      image: '/cucumber.jpg',
       category: 'Vegetable',
       description: 'Eggs collected daily from free-range hens for maximum freshness.'
     },
@@ -243,7 +260,7 @@ export default function Home() {
                     "Gardening",
                     "Animal feeding sessions"
                   ],
-                  image: '/tomato.png',
+                  image: '/braii.jpg',
                   link: '/activities#farm'
                 },
                 {
@@ -268,7 +285,7 @@ export default function Home() {
                     "Farm shop on site",
                     "Car service to farm"
                   ],
-                  image: '/lodge.jpg',
+                  image: '/bed.jpg',
                   link: '/accommodation'
                 }
               ].map((activity, index) => (
@@ -410,7 +427,7 @@ export default function Home() {
                       <p className="text-gray-600">Seasonal camping available from August to November. Equipment rental available</p>
 
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
