@@ -59,14 +59,6 @@ export default function Home() {
       description: 'Eggs collected daily from free-range hens for maximum freshness.'
     },
     {
-      id: '6',
-      name: 'Tomato',
-      price: 4000.99,
-      image: '/bucket-tomato.jpg',
-      category: 'Dairy',
-      description: 'Eggs collected daily from free-range hens for maximum freshness.'
-    },
-    {
       id: '3',
       name: 'Papaya',
       price: 4900.99,
@@ -86,8 +78,16 @@ export default function Home() {
       id: '5',
       name: 'Beans',
       price: 4000.99,
-      image: '/Beans.jpg',
+      image: '/beans.jpg',
       category: 'Vegetable',
+      description: 'Eggs collected daily from free-range hens for maximum freshness.'
+    },
+    {
+      id: '6',
+      name: 'Tomato',
+      price: 4000.99,
+      image: '/bucket-tomato.jpg',
+      category: 'Dairy',
       description: 'Eggs collected daily from free-range hens for maximum freshness.'
     },
     {
