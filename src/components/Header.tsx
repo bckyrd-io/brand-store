@@ -93,7 +93,7 @@ export default function Header() {
             className="h-10 w-auto"
             priority
           />
-          <span>ground farm</span>
+          <span>Paground Farm</span>
         </Link>
         <div className="flex items-center gap-6">
           <button className="hover:text-primary transition-colors" aria-label="Open search" onClick={() => setSearchOpen(true)}>

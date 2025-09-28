@@ -35,7 +35,7 @@ export default function Home() {
       description: 'Create lasting memories with camping, playground fun, and guided farm tours. Perfect for families and nature enthusiasts.'
     },
     {
-      image: '/irrigation.jpeg',
+      image: '/braii.jpg',
       title: 'Farm Adventures',
       description: 'Create lasting memories with camping, playground fun, and guided farm tours. Perfect for families and nature enthusiasts.'
     }
@@ -179,13 +179,7 @@ export default function Home() {
                   {slides[currentSlide].description}
                 </p>
                 <div className="flex flex-wrap gap-4 pt-2">
-                  <button
-                    className="bg-primary text-white px-4 py-2 hover:bg-primary/90 transition-colors inline-block "
-                    onClick={() => {
-                      const el = document.getElementById('products');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >Farm Shop</button>
+
                   <button
                     className="inline-block bg-none text-primary px-4 py-2 border-2 border-primary hover:bg-primary hover:text-white transition-colors"
                     onClick={() => {
@@ -250,20 +244,6 @@ export default function Home() {
             <div className="space-y-16 max-w-7xl mx-auto">
               {[
                 {
-                  id: '0',
-                  title: "Farm Adventures",
-                  short: "Experience authentic farm life with fun and learning for all ages.",
-                  features: [
-                    "Outdoor Camping",
-                    "Guided farm tours",
-                    "Seasonal fruit picking",
-                    "Gardening",
-                    "Animal feeding sessions"
-                  ],
-                  image: '/braii.jpg',
-                  link: '/activities#farm'
-                },
-                {
                   id: '1',
                   title: "Adventure Playground",
                   short: "A safe, exciting outdoor playground for kids and families.",
@@ -272,7 +252,7 @@ export default function Home() {
                     "Trampolines",
                     "Soccer fields"
                   ],
-                  image: '/adventure.png',
+                  image: '/play.webp',
                   link: '/activities#playground'
                 },
                 {
@@ -383,7 +363,7 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row">
                   <div className="relative w-full md:w-72 h-64 overflow-hidden">
                     <Image
-                      src="/education.png"
+                      src="/irrigation.jpeg"
                       alt="Educational Programs"
                       fill
                       className="object-cover rounded-lg"
