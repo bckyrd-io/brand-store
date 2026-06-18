@@ -5,37 +5,37 @@ import Footer from '../../components/Footer';
 import { useCart } from '../../context/CartContext';
 import Image from 'next/image';
 
-// Example activity data (in real app, fetch from API or context)
-const activities = [
-  {
-    id: '0',
-    name: 'Farm Adventures',
-    images: ['/adventure.jpg', '/farm_playground.jpg', '/vegetables.jpg'],
-    basePrice: 5000,
-    description: 'Experience authentic farm life with our guided tours, seasonal fruit picking, and animal feeding sessions.'
-  },
-  {
-    id: '1',
-    name: 'Adventure Playground',
-    images: ['/trampoline.jpg', '/farm_playground.jpg', '/eggs.jpg'],
-    basePrice: 7000,
-    description: 'A perfect outdoor playground featuring obstacle courses, trampolines, and sand soccer fields.'
-  },
-  {
-    id: '2',
-    name: 'Town Lodge',
-    images: ['/lodge.jpg', '/farm_shop.jpg', '/honey.jpg'],
-    basePrice: 9000,
-    description: 'Stay in our modern lodge in town with easy access to both urban amenities and farm experiences.'
-  }
-];
+import { servicesData, Package } from '../services/[type]';
 
 export default function ReservePage() {
   const router = useRouter();
   const { id } = router.query;
   const { addToCart } = useCart();
 
-  const activity = activities.find(a => a.id === id) || activities[0];
+  // Find the exact package by looping through all service categories in servicesData
+  let pkg: Package | null = null;
+  if (id) {
+    for (const serviceKey in servicesData) {
+      const found = servicesData[serviceKey].packages.find(p => p.id === id);
+      if (found) {
+        pkg = found;
+        break;
+      }
+    }
+  }
+
+  // Fallback to the first package of the first service if not found
+  if (!pkg) {
+    pkg = servicesData['lodge'].packages[0];
+  }
+
+  const activity = {
+    id: pkg.id,
+    name: pkg.title,
+    images: [pkg.image],
+    basePrice: pkg.price || 0,
+    description: pkg.short || ''
+  };
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState(1);
@@ -78,7 +78,7 @@ export default function ReservePage() {
     <div>
       <Header />
       <main className="min-h-screen bg-gray-50 pt-20 pb-16 flex flex-col items-center">
-        <div className="w-full max-w-5xl bg-white rounded-2xl shadow-sm mt-8 p-0 overflow-hidden">
+        <div className="w-full max-w-5xl bg-white rounded-2xl border border-gray-200 mt-8 p-0 overflow-hidden">
           <div className="flex flex-col lg:flex-row">
             {/* Gallery on the left, scrollable on mobile, larger on desktop, square images */}
             <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 bg-gray-100 order-1 lg:order-1">

@@ -74,17 +74,18 @@ export default function Header() {
 
   // Define the sections menu
   const sectionMap = [
-    { id: 'about', label: 'About', emoji: '🏠' },
-    { id: 'products', label: 'Shop', emoji: '🧺' },
-    { id: 'lodge', label: 'Lodge', emoji: '🛏️' },
-    { id: 'contact', label: 'Contact', emoji: '📞' },
+    { id: 'home', label: 'Home', emoji: '🏠', href: '/#about' },
+    { id: 'shop', label: 'Shop', emoji: '🧺', href: '/#products' },
+    { id: 'lodge', label: 'Lodge', emoji: '🛏️', href: '/services/lodge' },
+    { id: 'garden', label: 'Garden', emoji: '🌻', href: '/services/garden' },
+    { id: 'contact', label: 'Contact', emoji: '📞', href: '/#visit' },
     // Add more sections as needed
   ];
 
   return (
     <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/" id='logo' className="flex text-primary font-bold items-center">
+      <div className="container mx-auto px-3 py-3 flex items-center justify-between">
+        <Link href="/" id='logo' className="flex  text-primary font-bold items-center">
           <Image
             src="/favicon.ico"
             alt="Balaza.Farm Logo"
@@ -93,7 +94,7 @@ export default function Header() {
             className="h-10 w-auto"
             priority
           />
-          <span>Paground Farm</span>
+          <span>Base4</span>
         </Link>
         <div className="flex items-center gap-6">
           <button className="hover:text-primary transition-colors" aria-label="Open search" onClick={() => setSearchOpen(true)}>
@@ -169,14 +170,29 @@ export default function Header() {
                 <span className="text-2xl">×</span>
               </button>
               {sectionMap.map(s => (
-                <a
-                  key={s.id}
-                  href={`#${s.id}`}
-                  className="text-lg font-medium hover:text-primary"
-                  onClick={e => handleSmoothScroll(e, s.id)}
-                >
-                  {s.emoji} {s.label}
-                </a>
+                s.href.startsWith('/#') ? (
+                  <a
+                    key={s.id}
+                    href={s.href}
+                    className="text-lg font-medium hover:text-primary"
+                    onClick={e => {
+                      if (window.location.pathname === '/') {
+                        handleSmoothScroll(e, s.href.replace('/#', ''));
+                      }
+                    }}
+                  >
+                    {s.emoji} {s.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={s.id}
+                    href={s.href}
+                    className="text-lg font-medium hover:text-primary"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {s.emoji} {s.label}
+                  </Link>
+                )
               ))}
             </nav>
           </div>

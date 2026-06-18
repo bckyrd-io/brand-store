@@ -44,7 +44,7 @@ export default function Checkout() {
               {cartItems.length === 0 ? (
                 <div className="text-gray-500 text-lg">Your cart is empty.</div>
               ) : cartItems.map((item: CartItem) => (
-                <div key={item.id} className="flex gap-4 items-center p-4 bg-white rounded-lg shadow-md mb-4">
+                <div key={item.id} className="flex gap-4 items-center p-4 bg-white rounded-lg border border-gray-200 mb-4">
                   <div className="relative w-24 h-24">
                     <Image
                       src={item.image}
@@ -85,7 +85,7 @@ export default function Checkout() {
                 </div>
               ))}
             </div>
-            <div className="bg-white rounded-lg shadow-md p-6 h-fit">
+            <div className="bg-white rounded-lg border border-gray-200 p-6 h-fit">
               <h2 className="text-xl font-bold mb-4">Order Summary</h2>
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between">
